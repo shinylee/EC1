@@ -43,7 +43,7 @@ void setup() {
   
   Head=loadImage("fishHead.png");
   Body=loadImage("fishBody.png");
-  Tail=loadImage("FishTail.png");
+  Tail=loadImage("fishTail.png");
 
   sb = new Spacebrew(this);
   sb.addPublish("out", "boolean", false);  //Start & Finish the app
