@@ -1,12 +1,12 @@
 import spacebrew.*;
 
 int ySpeed=1;
-int BodyY;
-PImage Body;
+int HeadY, BodyY, TailY;
+PImage Head, Body, Tail;
 
 // Spacebrew stuff
 String server = "sandbox.spacebrew.cc";
-String name   = "EC";
+String name   = "EC1";
 String desc   = "Some stuff";
 Spacebrew sb;
 
@@ -24,13 +24,15 @@ boolean bRemoteKeyInput    = false;
 void setup() {
   background(0);
   size( appWidth, appHeight );
+  Head=loadImage("FishHead.png");
   Body=loadImage("fishBody.png");
+  Tail=loadImage("FishTail.png");
 
   sb = new Spacebrew(this);
-  sb.addPublish("out", "boolean", false);  
+  sb.addPublish("out", "boolean", false);  //Start & Finish the app
   sb.addSubscribe("in", "boolean");  
 
-  sb.addPublish("send", "boolean", false); 
+  sb.addPublish("send", "boolean", false); //Keyoutput & Keyinput
   sb.addSubscribe("receive", "boolean");
 
   sb.connect( server, name, desc );
@@ -42,18 +44,18 @@ void draw() {
 
   // ---- start person 1 ---- //
   if ( millis() - corpseStarted < 10000 ) {
-//    frameRate(20);
-//    for (int i = 0; i <height*10 ; i = i+900) { 
-//      if (bRemoteKeyInput) {
-//        image(Head, 0, HeadY +i);
-//      }
-//      else {        
-//        image(Head, 0, HeadY +i);
-//        HeadY-=ySpeed;
-//      }
-//    }
+    frameRate(20);
+    for (int i = 0; i <height*10 ; i = i+900) { 
+      if (bRemoteKeyInput) {
+        image(Head, 0, HeadY +i);
+      }
+      else {        
+        image(Head, 0, HeadY +i);
+        HeadY-=ySpeed;
+      }
+    }
 
-    // ---- start person 2 ---- //my part
+    // ---- start person 2 ---- //
   } 
   else if ( millis() - corpseStarted < 20000 ) { 
     frameRate(20);
@@ -71,17 +73,16 @@ void draw() {
   } 
   else if ( millis() - corpseStarted < 30000 ) {
 
-//    frameRate(20);
-//    for (int i = 0; i <height*10 ; i = i+900) { 
-//      if (bRemoteKeyInput) {
-//        image(Tail, width/3*2, TailY+i);
-//        TailY-=ySpeed;
-//      }
-//      else {        
-//        image(Tail, width/3*2, TailY+i);
-//      }
-//    }
-    
+    frameRate(20);
+    for (int i = 0; i <height*10 ; i = i+900) { 
+      if (bRemoteKeyInput) {
+        image(Tail, width/3*2, TailY+i);
+        TailY-=ySpeed;
+      }
+      else {        
+        image(Tail, width/3*2, TailY+i);
+      }
+    }
     // ---- we're done! ---- //
   } 
   else {
