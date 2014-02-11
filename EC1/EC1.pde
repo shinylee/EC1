@@ -1,3 +1,5 @@
+//Susan, Shiny & Winnie Spacebrew week2!
+
 //minim
 import ddf.minim.*;
 Minim minim;
